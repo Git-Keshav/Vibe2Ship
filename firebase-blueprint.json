@@ -1,0 +1,104 @@
+{
+  "entities": {
+    "Task": {
+      "title": "Task",
+      "description": "A task created by the user with metadata, subtasks, and AI priorities.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "status": { "type": "string", "enum": ["todo", "in_progress", "completed"] },
+        "priority": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+        "energyRequired": { "type": "string", "enum": ["light", "medium", "heavy", "deep_work"] },
+        "deadline": { "type": "string" },
+        "estimatedDuration": { "type": "number" },
+        "aiPredictedDuration": { "type": "number" },
+        "procrastinationRisk": { "type": "string", "enum": ["low", "medium", "high"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" },
+        "tags": { "type": "array" },
+        "contextTags": { "type": "array" },
+        "aiPriorityScore": { "type": "number" },
+        "aiPriorityExplanation": { "type": "string" },
+        "aiSuggestedPriority": { "type": "string" },
+        "aiUrgencyStatus": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "status"]
+    },
+    "Habit": {
+      "title": "Habit",
+      "description": "A daily habit being tracked by the user.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "streakDays": { "type": "number" },
+        "longestStreak": { "type": "number" },
+        "category": { "type": "string" },
+        "history": { "type": "array" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "name"]
+    },
+    "Goal": {
+      "title": "Goal",
+      "description": "A medium-to-long term goal defined by the user.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "targetDate": { "type": "string" },
+        "category": { "type": "string" },
+        "progress": { "type": "number" },
+        "healthScore": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title"]
+    },
+    "Profile": {
+      "title": "Profile",
+      "description": "User preferences, roles, and onboarding metadata.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "preferences": {
+          "type": "object",
+          "properties": {
+            "aiPersonality": { "type": "string" },
+            "nudgeFrequency": { "type": "string" },
+            "wakeTime": { "type": "string" },
+            "sleepTime": { "type": "string" }
+          },
+          "required": ["aiPersonality", "nudgeFrequency", "wakeTime", "sleepTime"]
+        }
+      },
+      "required": ["userId", "name", "role", "preferences"]
+    }
+  },
+  "firestore": {
+    "tasks/{taskId}": {
+      "schema": "Task",
+      "description": "User tasks"
+    },
+    "habits/{habitId}": {
+      "schema": "Habit",
+      "description": "User habits"
+    },
+    "goals/{goalId}": {
+      "schema": "Goal",
+      "description": "User goals"
+    },
+    "profiles/{userId}": {
+      "schema": "Profile",
+      "description": "User profiles and preferences"
+    }
+  }
+}
