@@ -3,7 +3,7 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDbncXtA6cBLYMiTqpnVwxodoyZ4ecv01Y",
+  apiKey: "YOUR_API_KEY_HERE",
   authDomain: "adk-crash-cou-codelab.firebaseapp.com",
   projectId: "adk-crash-cou-codelab",
   storageBucket: "adk-crash-cou-codelab.firebasestorage.app",
